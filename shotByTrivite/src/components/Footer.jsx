@@ -2,12 +2,12 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="bg-blue-200 h-full">
-      <div className="w-[80%] mx-auto">
-        <div className="w-full flex justify-between pt-6 pb-6">
-          <p className=" self-center">Made by Oghenerohro Precious - Copyright 2023</p>
-          <div className=" w-[20%]">
-            <ul className="flex justify-between pt-1 underline">
+    <div className="bg-[#FFFDFD] h-full">
+      <div className="w-full p-2 sm:p-0 sm:w-[80%] mx-auto xl:max-w-5xl">
+        <div className="w-full block sm:flex justify-between pt-4 pb-4">
+          <p className=" self-center font-primaryfont text-lg">Made by Oghenerohro Precious - Copyright 2023</p>
+          <div className="w-full sm:w-[20%]">
+            <ul className="flex justify-between font-primaryfont pt-3 sm:pt-1 underline text-lg">
                 <li>TW</li>
                 <li>LN</li>
                 <li>YT</li>

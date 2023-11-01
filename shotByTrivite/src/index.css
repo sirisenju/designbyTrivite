@@ -12,3 +12,18 @@
 input::placeholder {
     color: black; /* Change the placeholder text color to red */
 }
+
+
+/*slider animation*/
+@keyframes scroll {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -100%;
+    }
+  }
+  
+  .animate {
+    animation: scroll 15s linear infinite;
+  }
