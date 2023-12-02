@@ -2,16 +2,88 @@ import React from "react";
 import expList from "../../lib/expList";
 import images from "../../lib/sliderImg";
 import wrokProj from "../../lib/projects";
+import { FaEye } from "react-icons/fa";
+import Ratings from "../../lib/ratings";
+import { useState } from "react";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 
 function Home() {
+  const [mail, setMail] = useState({
+    fullname: "",
+    subject: "",
+    message: "",
+  });
+
+  const [error, setError] = useState({
+    fullname: "",
+    subject: "",
+    message: "",
+  });
+
+  //handle user input from form
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    setMail({
+      ...mail,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const isValid = validateForm();
+
+    if (isValid) {
+      //clear form field
+      setMail({
+        fullname: "",
+        subject: "",
+        message: "",
+      });
+    }
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const errors = {};
+
+    if (mail.fullname.trim() === "") {
+      errors.fullname = "full name is required";
+      isValid = false;
+    }
+
+    if (mail.subject.trim() === "") {
+      errors.subject = "subject is required";
+      isValid = false;
+    }
+
+    if (mail.message.trim() === "") {
+      errors.message = "message is required";
+      isValid = false;
+    }
+
+    setError(errors);
+    return isValid;
+  };
   return (
     <main>
       {/**first section. Hero section............................................................ */}
-      <section className="h-full w-full bg-[#FFFDFD]" id="hero">
-        <div className="w-full sm:w-[80%] mx-auto p-4 xl:max-w-5xl">
+      <section className="h-full w-full bg-[#131212]" id="hero">
+        <div
+          data-aos="fade-right"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out-sine"
+          className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl"
+        >
           <div className="block sm:flex sm:justify-center sm:pt-[5%]">
-            <div className="self-start lg:self-center">
-              <h1 className="text-[50px] font-semibold font-secfont">
+            <div className="self-start lg:self-center text-white">
+              <h1 className="text-[30px] sm:text-[50px] font-semibold font-head">
                 Product
                 <br /> Designer
               </h1>
@@ -23,14 +95,27 @@ function Home() {
                 <span className=" font-semibold">Eastalliontech</span>
               </p>
               <ul className="flex pt-2 font-primaryfont text-lg underline">
-                <li>Send a message</li>
-                <li className=" pl-2">Resume</li>
+                <AnchorLink href="/contact-me" className=" hover:underline">
+                  <li>Send a message</li>
+                </AnchorLink>
+                <a href="primer-pro.pdf" download={"primer-pro.pdf"}>
+                  <li className=" pl-2">Resume</li>
+                </a>
               </ul>
             </div>
-            <div className="w-full sm:max-w-md sm:ml-14 ">
-              <img src="/assets/hero-image.png" alt="" />
+            <div className="w-full sm:max-w-md sm:ml-14 pt-2 sm:pt-0">
+              <img
+                data-aos="zoom-in"
+                data-aos-offset="200"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out-sine"
+                src="/assets/hero-image.png"
+                loading="lazy"
+                alt=""
+              />
               <div className="">
-                <ul className="flex justify-between pt-1 underline font-primaryfont">
+                <ul className="flex justify-between pt-1 underline font-primaryfont text-white">
                   <li>TW</li>
                   <li>LN</li>
                   <li>YT</li>
@@ -45,7 +130,7 @@ function Home() {
                 {images.map((item) => (
                   <div
                     key={item.id}
-                    className="flex justify-center items-start w-[20rem]"
+                    className="flex justify-center items-start w-[20rem] text-white"
                   >
                     <img src={item.logo} className="h-12 w-10" />
                     <span className="self-center pl-3 text-3xl font-semibold font-primaryfont">
@@ -56,7 +141,7 @@ function Home() {
                 {images.map((item) => (
                   <div
                     key={item.id}
-                    className="flex justify-center items-start w-[20rem]"
+                    className="flex justify-center items-start w-[20rem] text-white"
                   >
                     <img src={item.logo} className="h-12 w-10" />
                     <span className="self-center pl-3 text-3xl font-semibold font-primaryfont">
@@ -72,14 +157,21 @@ function Home() {
       {/**second section. About me section............................................................. */}
 
       {/**second section. About me section............................................................. */}
-      <section className="h-full w-full" id="about-me">
+      <section className="h-full w-full bg-[#131212]" id="about-me">
         <div className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl">
-          <div className="">
+          <div
+            data-aos="fade-left"
+            data-aos-offset="200"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out-sine"
+            className="text-white"
+          >
             <p className="text-4xl sm:text-6xl font-medium font-primaryfont pt-5 pb-5">
               <span className="text-stroke">01.</span>
               About me
             </p>
-            <div className="border-t-2 border-black">
+            <div className="border-t-2 border-white">
               <p className="pt-4 sm:pt-16 pb-4 sm:pb-16 font-primaryfont">
                 Product designer with a blend of creativity and technical
                 prowess, I'm dedicated to bringing ideas to life, one pixel at a
@@ -93,17 +185,24 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="">
+          <div
+            data-aos="fade-right"
+            data-aos-offset="200"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out-sine"
+            className="text-white"
+          >
             <p className="text-4xl sm:text-6xl font-medium font-primaryfont pt-5 pb-5 text-start sm:text-end">
               <span className="text-stroke">02.</span>
               <br />
               Experience
             </p>
-            <div className="border-b-2 border-black">
+            <div className="border-b-2 border-white">
               {expList.map((item) => (
                 <div
                   key={item.id}
-                  className="text-lg block sm:flex sm:justify-between text-center p-7 w-full border-t-2 border-black"
+                  className="text-lg block sm:flex sm:justify-between text-center p-7 w-full border-t-2 border-white"
                 >
                   <p className="self-center font-primaryfont font-semibold text-lg">
                     {item.company}
@@ -117,9 +216,11 @@ function Home() {
               ))}
             </div>
             <div className="flex justify-center p-[2%] sm:p-[5%]">
-              <button className="bg-[#264BD0] rounded-lg px-20 sm:px-36 py-3 sm:py-6 text-lg text-white font-primaryfont">
-                Download Resume
-              </button>
+              <a href="primer-pro.pdf" download={"primer-pro.pdf"}>
+                <button className="bg-[#264BD0] rounded-lg px-20 sm:px-36 py-3 sm:py-6 text-lg text-white font-primaryfont">
+                  Download Resume
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -127,13 +228,20 @@ function Home() {
       {/**second section. About me section............................................................. */}
 
       {/**third section my work section. Experience............................................................. */}
-      <section className="h-full w-full" id="my-work">
-        <div className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl">
-          <p className="text-4xl sm:text-6xl font-semibold pt-5 pb-5 sm:text-end text-start">
+      <section className="h-full w-full bg-[#131212]" id="my-work">
+        <div
+          data-aos="fade-left"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out-sine"
+          className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl"
+        >
+          <p className="text-4xl sm:text-6xl font-semibold pt-5 pb-5 sm:text-end text-start text-white">
             <span className="text-stroke">04.</span>
             My work
           </p>
-          <div className="border-t-2 border-black">
+          <div className="border-t-2 border-white">
             {wrokProj.map((item) => (
               <div
                 key={item.id}
@@ -141,13 +249,22 @@ function Home() {
               >
                 <img
                   src={item.images}
-                  className="h-[320px] w-full object-cover"
+                  className=" sm:h-[320px] w-full object-cover"
                   alt=""
                 />
-                <div className="w-full bg-black p-2 sm:p-10 text-white">
-                  <h2 className="text-2xl pb-3">{item.company}</h2>
-                  <p className=" pb-3 font-primaryfont">{item.message}</p>
-                  <p>{item.views}</p>
+                <div className="w-full bg-white p-2 sm:p-10 text-black">
+                  <img src={item.company} alt="" />
+                  <p className="pb-3 pt-3 font-primaryfont text-lg sm:text-base">
+                    {item.message}
+                  </p>
+                  <a href="">
+                    <p className=" flex text-lg hover:underline">
+                      <span className=" flex items-center pr-2">
+                        <FaEye size={20} />
+                      </span>
+                      {item.views}
+                    </p>
+                  </a>
                 </div>
               </div>
             ))}
@@ -156,118 +273,118 @@ function Home() {
       </section>
 
       {/**fourth section contact us section. Experience............................................................. */}
-      <section className="h-full w-full" id="contact-me">
-        <div className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl">
+      <section className="h-full w-full bg-[#131212]" id="contact-me">
+        <div
+          data-aos="zoom-in"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out-sine"
+          className="w-full sm:w-[80%] mx-auto p-2 xl:max-w-5xl text-white"
+        >
           <p className="text-4xl sm:text-6xl font-semibold pt-5 pb-5 text-start">
             <span className="text-stroke">
               05. <br />
             </span>
             Endorsements
           </p>
-          <div className="border-t-2 border-black block sm:flex sm:justify-between sm:gap-x-2 pt-[10%] pb-[10%]">
-            <div className="w-full sm:max-w-sm p-4 bg-[#E4E8F4] mb-2">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                accusantium id facere minima assumenda, quaerat sit, pariatur ad
-                praesentium illum ex nostrum totam dicta facilis nulla incidunt
-                quam rem quas officiis quidem quisquam?
-              </p>
-              <div className="flex justify-between pt-4">
-                <p>
-                  Tony Stark <br />
-                  Ironman
-                </p>
-                <img
-                  src="/assets/facebook.png"
-                  className=" h-8 w-9 object-contain"
-                  alt=""
-                />
+          <div className="border-t-2 border-white block sm:flex sm:justify-between sm:gap-x-2 pt-[10%] pb-[10%]">
+            {Ratings.map((item) => (
+              <div
+                key={item.id}
+                className="w-full sm:max-w-sm p-4 bg-[#264BD0] mb-2 grid"
+              >
+                <p>{item.remark}</p>
+                <div className="flex justify-between items-end pt-2">
+                  <p>
+                    {item.name} <br />
+                    {item.role}
+                  </p>
+                  <img
+                    src={item.iconUrl}
+                    className=" h-8 w-9 object-contain"
+                    loading="lazy"
+                    alt=""
+                  />
+                </div>
               </div>
-            </div>
-            <div className="w-full sm:max-w-sm p-4 bg-[#E4E8F4] mb-2">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                accusantium id facere minima assumenda, quaerat sit, pariatur ad
-                praesentium illum ex nostrum totam dicta facilis nulla incidunt
-                quam rem quas officiis quidem quisquam?
-              </p>
-              <div className="flex justify-between pt-4">
-                <p>
-                  Tony Stark <br />
-                  Ironman
-                </p>
-                <img
-                  src="/assets/facebook.png"
-                  className=" h-8 w-9 object-contain"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="w-full sm:max-w-sm p-4 bg-[#E4E8F4] mb-2 font-primaryfont">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-                accusantium id facere minima assumenda, quaerat sit, pariatur ad
-                praesentium illum ex nostrum totam dicta facilis nulla incidunt
-                quam rem quas officiis quidem quisquam?
-              </p>
-              <div className="flex justify-between pt-4">
-                <p>
-                  Tony Stark <br />
-                  Ironman
-                </p>
-                <img
-                  src="/assets/facebook.png"
-                  className=" h-8 w-9 object-contain"
-                  alt=""
-                />
-              </div>
-            </div>
+            ))}
           </div>
-          <div className="text-center text-lg max-w-xl mx-auto font-primaryfont">
-            <p className=" text-lg font-semibold text-[#264BD0]">
+          <div
+            data-aos="fade-left"
+            data-aos-offset="200"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out-sine"
+            className="text-center text-lg max-w-xl mx-auto font-primaryfont"
+          >
+            <p className=" text-lg font-semibold text-white">
               Let's create experiences that inspire and empower
             </p>
-            <p className=" text-[#264BD0]">
+            <p className=" text-white">
               Got a question, proposal or project or want to work together on
               something? Feel free to reach out."
             </p>
           </div>
-          <div className="w-full pt-14">
+          <div
+            data-aos="zoom-in"
+            data-aos-offset="200"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out-sine"
+            className="w-full pt-14"
+          >
             <form action="">
-              <div className=" sm:flex">
+              <div className=" sm:flex text-white">
                 <div className="w-full sm:w-[50%]">
                   <div className=" sm:p-8 font-primaryfont">
                     <label htmlFor="">Full Name</label>
                     <br />
                     <input
                       type="text"
-                      placeholder="Enter your full name"
-                      className="w-[100%] h-[40px] pt-5 outline-none border-b-2 border-black bg-transparent"
+                      name="fullname"
+                      onChange={handleInput}
+                      value={mail.fullname}
+                      id="fullname"
+                      placeholder="enter your full name"
+                      className="w-[100%] h-[40px] pt-5 outline-none border-b-2 border-white bg-transparent"
                     />
+                    <span style={{ color: "red" }}>{error.fullname}</span>
                   </div>
                   <div className=" pt-4 sm:p-8 font-primaryfont">
-                    <label htmlFor="">Full Name</label>
+                    <label htmlFor="">Subject</label>
                     <br />
                     <input
                       type="text"
-                      placeholder="Enter your full name"
-                      className="w-[100%] h-[40px] pt-5 outline-none border-b-2 border-black bg-transparent"
+                      name="subject"
+                      onChange={handleInput}
+                      value={mail.subject}
+                      id="subject"
+                      placeholder="enter email subject"
+                      className="w-[100%] h-[40px] pt-5 outline-none border-b-2 border-white bg-transparent"
                     />
+                    <span style={{ color: "red" }}>{error.subject}</span>
                   </div>
                 </div>
-                <div className="w-full sm:w-[50%] sm:p-8 pt-8 font-primaryfont">
+                <div className="w-full sm:w-[50%] sm:p-8 pt-4 sm:pt-10 font-primaryfont">
                   <label htmlFor="">Message</label>
                   <br />
                   <textarea
-                    name=""
-                    id=""
+                    name="message"
+                    onChange={handleInput}
+                    value={mail.message}
+                    id="message"
                     placeholder="enter message"
-                    className="w-full h-[100px] sm:h-[154px] outline-none border-b-2 border-black bg-transparent"
+                    className="w-full h-[80px] sm:h-[154px] outline-none border-b-2 border-white bg-transparent"
                   ></textarea>
+                  <span style={{ color: "red" }}>{error.message}</span>
                 </div>
               </div>
               <div className=" sm:p-8">
-                <button className="py-4 w-[170px] bg-blue-500 rounded-lg font-primaryfont">
+                <button
+                  onClick={handleSubmit}
+                  className="py-4 w-[170px] bg-blue-500 rounded-lg font-primaryfont"
+                >
                   Send a message
                 </button>
               </div>

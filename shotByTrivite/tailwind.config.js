@@ -8,6 +8,7 @@ export default {
         primaryfont: ["DM Sans"],
         secfont: ["Zen Old Mincho"],
         boldFont: ["Manrope"],
+        head: ["Zen Dots"]
       },
     },
   },

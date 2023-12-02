@@ -3,17 +3,23 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 
 function Navlinks() {
   return (
-    <div className="bg-[#E4E8F4]/40 h-16 w-full">
-      <div className="w-full md:w-[80%] mx-auto xl:max-w-5xl">
-        <div className="w-full block sm:flex justify-between p-2">
+    <div className="bg-[#131212] h-16 w-full">
+      <div
+        data-aos="fade-left"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out-sine"
+        className="w-full md:w-[85%] mx-auto xl:max-w-5xl"
+      >
+        <div className="w-full block sm:flex justify-between p-2 text-white">
           <p className="flex">
-            <img src="/assets/shot-logo.png" className="h-12 w-10" alt="" />
+            <img src="/assets/logo-white.png" className="h-12 w-10" alt="" />
             <span className="items-center flex text-base font-semibold font-primaryfont pl-2">
               DesignbyTrivite
             </span>
           </p>
-
-          <ul className="hidden sm:flex w-[60%] lg:w-[40%] justify-between font-primaryfont">
+          <ul className="hidden sm:flex w-[60%] lg:w-[35%] justify-between font-primaryfont text-base">
             <AnchorLink href="/hero" className=" hover:underline ">
               <li>
                 <span className="float-right">01</span>

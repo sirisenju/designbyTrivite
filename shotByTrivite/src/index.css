@@ -4,13 +4,13 @@
 
 
 .text-stroke{
-    color: black;
+    color: white;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-width: 2px;
 }
 
 input::placeholder {
-    color: black; /* Change the placeholder text color to red */
+    color: white; /* Change the placeholder text color to red */
 }
 
 
