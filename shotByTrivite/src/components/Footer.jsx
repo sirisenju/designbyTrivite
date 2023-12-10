@@ -2,14 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div
-      data-aos="zoom-in"
-      data-aos-offset="200"
-      data-aos-delay="50"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out-sine"
-      className="bg-[#131212] border-t-2 border-white h-full"
-    >
+    <div>
       <div className="w-full p-2 sm:p-0 sm:w-[80%] mx-auto xl:max-w-5xl text-white">
         <div className="w-full block sm:flex justify-between pt-4 pb-4">
           <p className=" self-center font-primaryfont text-lg sm:text-start text-center">
