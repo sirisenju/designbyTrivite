@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div>
+    <section className="w-full h-full bg-[#131212]">
       <div className="w-full p-2 sm:p-0 sm:w-[80%] mx-auto xl:max-w-5xl text-white">
         <div className="w-full block sm:flex justify-between pt-4 pb-4">
           <p className=" self-center font-primaryfont text-lg sm:text-start text-center">
@@ -18,7 +18,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
